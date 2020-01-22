@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Hi, <b>{{ current_user.company_name }}!</b></h1>
+    <h2>Your email: {{ current_user.email }}!</h2>
+    <p> You have <b>{{ current_user.clients.count() }}</b> clients in total to be invoiced</p>
+
+    <p>Clients:</p>
+    <table class="table table-hover table-dark" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Contact Person</th>
+        <th scope="col">Email</th>
+        <th scope="col">Invoice Status</th>
+      </tr>
+    </thead>
+     <tbody>
+         <div>
+         {% for client in current_user.clients %}
+          <tr>
+            <td>{{ client.id }}</td>
+            <td>{{ client.client_company.upper()}}</td>
+            <td>{{ client.client_name.capitalize() }}</td>
+            <td>{{ client.client_email }}</td>
+            <td>{{ client.invoice_status}}</td>
+
+             {% if client.invoice_status == 'None' %}
+               <td><a href={{ url_for('index') }}><button type="button" class="btn btn-primary">
+                   Generate</button></a></td>
+               <td><button type="button" class="btn btn-success" disabled>SEND NOW</button></td>
+             {% else %}
+                 <td><button type="button" class="ff"><a href={{ url_for('invoice') }}>Invoice link</a></button></td>
+               <td><button type="button" class="btn btn-success">SEND NOW</button></td>
+             {% endif %}
+
+          </tr>
+         </div>
+     {% endfor %}
+     </tbody>
+  </table>
+{% endblock %}

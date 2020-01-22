@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User: {{ user.company_name }}</h1>
+    <hr>
+    {% for client in user.clients %}
+    <p>
+    {{ client.id }} - {{ client.client_name }} from {{ client.client_company }} will be issued
+        <b>{{ client.invoice_amount }}</b><br>
+        <i>For: {{ client.service_description }}</i>
+
+    </p>
+    {% endfor %}
+{% endblock %}

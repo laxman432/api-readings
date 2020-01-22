@@ -1,0 +1,66 @@
+<html lang="eng">
+    <head>
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../static/index.js"></script>
+      <script type="text/javascript" src="../static/gen.js"></script>
+         {% if title %}
+        <title>{{ title }} - invoice.io</title>
+        {% else %}
+        <title>INVOICE.IO</title>
+        {% endif %}
+
+    </head>
+    <body>
+
+
+        <div>
+              <ul class="nav nav-tabs">
+
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('index') }}">INVOICE.IO</a>
+              </li>
+
+                 {% if current_user.is_anonymous %}
+
+
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('login') }}">Login</a>
+              </li>
+                {% else %}
+              <li class="nav-item">
+                <a class="nav-link active" href=
+                        "{{ url_for('user', id=current_user.id, company_name=current_user.company_name) }}">Profile</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('add_client') }}">Add Client</a>
+              </li>
+
+                     <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('logout') }}">Logout</a>
+              </li>
+
+                {% endif %}
+            </ul>
+
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+
+
+    </body>
+</html>

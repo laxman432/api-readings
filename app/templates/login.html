@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    
+     {% if title %}
+        <title>{{ title }} - invoice.io</title>
+        {% else %}
+        <title>INVOICE.IO</title>
+        {% endif %}
+    
+  <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+</head>
+
+<body>
+
+<div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+                <form action="" method="post" novalidate>
+                    {{ form.hidden_tag() }}
+				<div class="group">
+
+					{{ form.email.label(class="label") }}
+					{{ form.email(class="input") }}
+
+				</div>
+				<div class="group">
+					{{ form.password.label(class="label") }}
+					{{ form.password(class="input") }}
+				</div>
+				<div class="group">
+					{{ form.remember_me() }} {{ form.remember_me.label(class="icon") }}
+
+				</div>
+				<div class="group">
+					{{ form.submit(class="button") }}
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+                    <p>New User? <label for="tab-2">Click to Register!</label></p>
+				</div>
+                </form>
+			</div>
+
+
+			<div class="sign-up-htm">
+                <form action="" method="post">
+                {{ form_registration.hidden_tag() }}
+				<div class="group">
+					{{ form_registration.company_name.label(class="label") }}
+					{{ form_registration.company_name(class="input") }}
+				</div>
+				<div class="group">
+					{{ form_registration.password.label(class="label") }}
+					{{ form_registration.password(class="input") }}
+				</div>
+				<div class="group">
+					{{ form_registration.password2.label(class="label") }}
+					{{ form_registration.password2(class="input") }}
+				</div>
+				<div class="group">
+					{{ form_registration.email.label(class="label") }}
+					{{ form_registration.email(class="input") }}
+				</div>
+				<div class="group">
+					{{ form_registration.submit(class="button") }}
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<label for="tab-1">Already Member?</label>
+				</div>
+
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

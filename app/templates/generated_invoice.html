@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/generated_invoice.css">
+    <script src="../static/print.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/print.min.css">
+    <title>Invoice for: {{client_invoice.client_company}}</title>
+</head>
+
+<body>
+    <div class="printclass">
+     <button type="button" class="printPdf" onclick="printJS('printJS-form', 'html')">
+    Save as PDF
+ </button>
+</div>
+    <div class="invoice-box" id="printJS-form">
+        <table padding="0" spacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="../static/css/logo_transparent.png" style="width:100%; max-width:300px;" alt="Invoice.IO logo">
+                            </td>
+
+                            <td>
+                                Invoice #: 123<br>
+                                Created: {{today}}<br>
+                                Due: {{due_date}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <b>FROM:</b><br>
+                                {{current_user.company_name}}<br>
+                                {{current_user.email}}<br>
+                                Estonia, Tallinn, CA 11412
+                            </td>
+
+                            <td>
+                                <b>TO:</b><br>
+                                {{client_invoice.client_company}}<br>
+                                {{client_invoice.client_name}}<br>
+                                {{client_invoice.client_email}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Payment Method
+                </td>
+
+                <td>
+                    Check
+                </td>
+            </tr>
+
+            <tr class="details">
+                <td>
+                    Bank Transfer
+                </td>
+
+                <td>
+                    #
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Item
+                </td>
+
+                <td>
+                    Price
+                </td>
+            </tr>
+
+            <tr class="item">
+                <td>
+                    {{client_invoice.service_description}}
+                </td>
+
+                <td>
+                    {{ client_invoice.invoice_amount }}$
+                </td>
+            </tr>
+
+
+
+            <tr class="total">
+                <td></td>
+
+                <td>
+                   Total: {{client_invoice.invoice_amount}}$
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>
